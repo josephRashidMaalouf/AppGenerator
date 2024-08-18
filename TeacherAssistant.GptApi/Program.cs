@@ -29,7 +29,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("frontend",
         policy =>
         {
-            policy.WithOrigins("http://localhost:5500") // Change to your client's URL
+            policy.WithOrigins("http://localhost:5500") 
                 .AllowAnyHeader()
                 .AllowAnyMethod();
         });
