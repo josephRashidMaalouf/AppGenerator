@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Matematik</title>
+  </head>
+  <body>
+    <div style="max-width: 600px; margin: auto; font-family: Arial, sans-serif">
+      <h2 style="text-align: center; color: #2c3e50">Matematik Träningsquiz</h2>
+      <div style="margin-bottom: 20px">
+        <label for="operation" style="display: block; margin: 10px 0"
+          >Välj räknesätt:</label
+        >
+        <select id="operation" style="width: 100%; padding: 10px">
+          <option value="addition">Addition</option>
+          <option value="subtraction">Subtraktion</option>
+          <option value="multiplication">Multiplikation</option>
+          <option value="division">Division</option>
+        </select>
+      </div>
+      <div style="margin-bottom: 20px">
+        <label for="difficulty" style="display: block; margin: 10px 0"
+          >Välj svårighetsgrad:</label
+        >
+        <select id="difficulty" style="width: 100%; padding: 10px">
+          <option value="easy">Lätt</option>
+          <option value="medium">Medel</option>
+          <option value="hard">Svår</option>
+        </select>
+      </div>
+      <div style="margin-bottom: 20px">
+        <label for="numQuestions" style="display: block; margin: 10px 0"
+          >Antal frågor:</label
+        >
+        <input
+          type="number"
+          id="numQuestions"
+          value="5"
+          min="1"
+          max="20"
+          style="width: 100%; padding: 10px"
+        />
+      </div>
+      <button
+        onclick="startQuiz()"
+        style="
+          width: 100%;
+          padding: 10px;
+          background-color: #27ae60;
+          color: white;
+          border: none;
+          cursor: pointer;
+          font-size: 16px;
+        "
+      >
+        Starta Quiz
+      </button>
+
+      <div id="quiz-container" style="margin-top: 20px"></div>
+    </div>
+
+    <script>
+      function startQuiz() {
+        const operation = document.getElementById("operation").value;
+        const difficulty = document.getElementById("difficulty").value;
+        const numQuestions = parseInt(
+          document.getElementById("numQuestions").value
+        );
+
+        const quizContainer = document.getElementById("quiz-container");
+        quizContainer.innerHTML = "";
+
+        let maxNum;
+        if (difficulty === "easy") maxNum = 10;
+        else if (difficulty === "medium") maxNum = 20;
+        else maxNum = 50;
+
+        for (let i = 0; i < numQuestions; i++) {
+          const num1 = Math.floor(Math.random() * maxNum) + 1;
+          const num2 = Math.floor(Math.random() * maxNum) + 1;
+
+          let question, answer;
+          switch (operation) {
+            case "addition":
+              question = `${num1} + ${num2}`;
+              answer = num1 + num2;
+              break;
+            case "subtraction":
+              question = `${num1} - ${num2}`;
+              answer = num1 - num2;
+              break;
+            case "multiplication":
+              question = `${num1} * ${num2}`;
+              answer = num1 * num2;
+              break;
+            case "division":
+              question = `${num1} / ${num2}`;
+              answer = (num1 / num2).toFixed(2);
+              break;
+          }
+
+          const questionDiv = document.createElement("div");
+          questionDiv.style.marginBottom = "10px";
+          questionDiv.innerHTML = `
+                <label style="display: block; margin: 10px 0;">Fråga ${
+                  i + 1
+                }: ${question} = ?</label>
+                <input type="number" data-answer="${answer}" style="width: 100%; padding: 10px;">
+            `;
+          quizContainer.appendChild(questionDiv);
+        }
+
+        const submitBtn = document.createElement("button");
+        submitBtn.style.width = "100%";
+        submitBtn.style.padding = "10px";
+        submitBtn.style.backgroundColor = "#2980b9";
+        submitBtn.style.color = "white";
+        submitBtn.style.border = "none";
+        submitBtn.style.cursor = "pointer";
+        submitBtn.style.fontSize = "16px";
+        submitBtn.innerText = "Rätta Quiz";
+        submitBtn.onclick = gradeQuiz;
+        quizContainer.appendChild(submitBtn);
+      }
+
+      function gradeQuiz() {
+        const inputs = document.querySelectorAll(
+          '#quiz-container input[type="number"]'
+        );
+        let score = 0;
+
+        inputs.forEach((input) => {
+          const userAnswer = parseFloat(input.value);
+          const correctAnswer = parseFloat(input.getAttribute("data-answer"));
+          if (userAnswer === correctAnswer) {
+            score++;
+            input.style.backgroundColor = "#2ecc71";
+          } else {
+            input.style.backgroundColor = "#e74c3c";
+          }
+        });
+
+        const resultDiv = document.createElement("div");
+        resultDiv.style.marginTop = "20px";
+        resultDiv.innerHTML = `<h3 style="text-align: center;">Du fick ${score} av ${inputs.length} rätt!</h3>`;
+        document.getElementById("quiz-container").appendChild(resultDiv);
+      }
+    </script>
+  </body>
+</html>

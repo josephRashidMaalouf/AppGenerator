@@ -1,0 +1,129 @@
+```html
+<div style="text-align: center; margin: 20px">
+  <h1>Vasatiden</h1>
+  <img
+    src="https://www.so-rummet.se/sites/default/files/nu_och_da/Slaget-vid-brannkyrka-Gustav-vasa-krig.jpg"
+    alt="Gustav Vasa Krig"
+    style="width: 80%; max-width: 600px"
+  />
+
+  <div style="margin-top: 20px; text-align: left">
+    <p>
+      Vasatiden är en period i Sveriges historia som pågick från år 1521 till
+      1611. Den började med att Gustav Vasa blev kung av Sverige och slutade med
+      att Karl IX dog. Gustav Vasa är kanske en av de mest kända svenska
+      kungarna och han är känd för att ha befriat Sverige från Danmark under
+      Kalmarunionen.
+    </p>
+    <p>
+      Under Gustav Vasas tid som kung reformerades kyrkan vilket innebar att
+      Sverige gick från att vara katolskt till protestantiskt. Detta innebar
+      också viktiga förändringar i hur landet styrdes och hur kyrkans makt
+      minskades.
+    </p>
+    <p>
+      Andra viktiga händelser under Vasatiden inkluderar etableringen av den
+      svenska flottan och många krig som Sverige var inblandat i, till exempel
+      de mot Ryssland och Danmark.
+    </p>
+    <p>
+      Efter Gustav Vasa blev hans son, Erik XIV, kung. Erik är kanske mest känd
+      för sina konflikter med sina bröder och andra adelsmän, vilket till slut
+      ledde till att han blev avsatt. Hans bror Johan III tog över, och han
+      styrdes av delvis andra ideal än sin bror.
+    </p>
+    <p>
+      Johan III:s son Sigismund blev också kung, men eftersom han även var kung
+      av Polen, ledde detta till konflikter som slutade med att han blev avsatt.
+      Karl IX, Sigismunds farbror, blev därefter kung.
+    </p>
+    <p>
+      Under hela Vasatiden präglades Sverige av politiska intriger, krig och
+      religiösa förändringar som formade landet för framtiden.
+    </p>
+  </div>
+
+  <h2>Quiz</h2>
+
+  <div style="text-align: left">
+    <form>
+      <p>1. När började Vasatiden?</p>
+      <input type="text" id="q1" />
+      <br />
+
+      <p>2. Vem blev kung av Sverige och påbörjade Vasatiden?</p>
+      <input type="text" id="q2" />
+      <br />
+
+      <p>3. Vilken union befriade Gustav Vasa Sverige ifrån?</p>
+      <input type="text" id="q3" />
+      <br />
+
+      <p>4. Vad var en av de stora religiösa förändringarna under Vasatiden?</p>
+      <input type="text" id="q4" />
+      <br />
+
+      <p>5. Vilka länder var Sverige i krig med under Vasatiden?</p>
+      <input type="text" id="q5" />
+      <br />
+
+      <p>6. Vem blev kung efter Gustav Vasa?</p>
+      <input type="text" id="q6" />
+      <br />
+
+      <p>7. Varför blev Erik XIV avsatt?</p>
+      <input type="text" id="q7" />
+      <br />
+
+      <p>8. Vem tog över efter Erik XIV?</p>
+      <input type="text" id="q8" />
+      <br />
+
+      <p>9. Vad innebar det att Sigismund även var kung av Polen?</p>
+      <input type="text" id="q9" />
+      <br />
+
+      <p>10. Vem blev king efter att Sigismund blev avsatt?</p>
+      <input type="text" id="q10" />
+      <br />
+
+      <button type="button" onclick="checkQuiz()">Rätta Quiz</button>
+    </form>
+  </div>
+
+  <div id="result" style="margin-top: 10px"></div>
+</div>
+
+<script>
+  function checkQuiz() {
+    const answers = [
+      "1521",
+      "Gustav Vasa",
+      "Kalmarunionen",
+      "Protestantism",
+      "Ryssland och Danmark",
+      "Erik XIV",
+      "Konflikter med bröder och adelsmän",
+      "Johan III",
+      "Konflikter och avsättande",
+      "Karl IX",
+    ];
+
+    let score = 0;
+
+    for (let i = 1; i <= 10; i++) {
+      let userAnswer = document
+        .getElementById(`q${i}`)
+        .value.trim()
+        .toLowerCase();
+      if (userAnswer === answers[i - 1].toLowerCase()) {
+        score++;
+      }
+    }
+
+    document.getElementById(
+      "result"
+    ).innerText = `Du fick ${score} av 10 rätt.`;
+  }
+</script>
+```

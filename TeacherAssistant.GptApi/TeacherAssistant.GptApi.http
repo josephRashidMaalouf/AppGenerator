@@ -1,0 +1,6 @@
+@TeacherAssistant.GptApi_HostAddress = http://localhost:5140
+
+GET {{TeacherAssistant.GptApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
